@@ -1,7 +1,7 @@
 ## CloudFlare DDNS Client
 A Linux client for servers hosting CloudFlare-managed domains behind a dynamic external IP address
 
-This Python-based script interfaces with [CloudFlare's client API](https://api.cloudflare.com/) to automatically and periodically update the A records of your CloudFlare domains with your server's current external IP address. This is generally intended for users whose servers are on a residential ISP with no static IP address assignment.
+This Python-based script interfaces with [CloudFlare's client API](https://api.cloudflare.com/) to automatically and periodically update A and AAAA records of your CloudFlare domains with your server's current external IP address. This is generally intended for users whose servers are on a residential ISP with no static IP address assignment.
 
 ### Installation
 Installation is fairly straightforward. Note that you should install the script on the server whose external IP you want reflected in your domains' DNS records. It is assumed that the server has a Python interpreter already installed.
@@ -20,6 +20,8 @@ After successfully installing, simply run
 cloudflare-ddns --configure
 ```
 You will be presented with an interactive prompt to enter in details about your CloudFlare email, API key, and domains to auto-update.
+
+Depending on how your subdomain records are configured (such as wildcard addresses), you may need to make multiple domain entries to ensure they all update. Example: `domain.com,*.domain.com,subdomain.domain.com`
 ```
 =============Configuring CloudFlare automatic DDNS update client=============
 You may rerun this at any time with cloudflare-ddns --configure
